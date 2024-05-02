@@ -12,7 +12,7 @@
 # fi
 xhost +local:docker 
 
-nvidia-docker run -it \
+docker run -it \
     -p 6006:6006 \
     --user=iclab \
     --net=host \
@@ -22,9 +22,9 @@ nvidia-docker run -it \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
-    --runtime=nvidia \
+    --gpus all \
     --privileged \
     -e LANG=C.UTF-8 \
     --volume=/dev:/dev \
-    samkaiyang/opt_dynamic_design:v6 \
+    yudeton/drl:v1 \
     /bin/bash
